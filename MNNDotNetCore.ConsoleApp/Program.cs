@@ -55,12 +55,14 @@ Console.WriteLine("Hello, World!");
 
 
 
-AdoDotNetExample adoDotNetExample = new AdoDotNetExample();
-//adoDotNetExample.Read();
+//AdoDotNetExample adoDotNetExample = new AdoDotNetExample();
+////adoDotNetExample.Read();
 
-//adoDotNetExample.Create("title","author", "content");
-//adoDotNetExample.Update(11, "test title", "test author", "test content");
-adoDotNetExample.Edit(11);
-adoDotNetExample.Edit(1);
+////adoDotNetExample.Create("title","author", "content");
+////adoDotNetExample.Update(11, "test title", "test author", "test content");
+//adoDotNetExample.Edit(11);
+//adoDotNetExample.Edit(1);
 //adoDotNetExample.Delete(11);
+DapperExample dapperExample = new DapperExample();
+dapperExample.Run();
 Console.ReadLine();
