@@ -14,7 +14,8 @@ namespace MNNDotNetCore.ConsoleApp
             DataSource = "DESKTOP-DV03CLP\\SQL2016", //server name
             InitialCatalog = "MNNDotNetCore", // database name
             UserID = "sa",
-            Password = "sasa"
+            Password = "sasa",
+            TrustServerCertificate = true,
         };
     }
 }
