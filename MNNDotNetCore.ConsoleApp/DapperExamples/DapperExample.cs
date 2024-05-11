@@ -1,4 +1,6 @@
 ﻿using Dapper;
+using MNNDotNetCore.ConsoleApp.Dtos;
+using MNNDotNetCore.ConsoleApp.Services;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -7,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MNNDotNetCore.ConsoleApp
+namespace MNNDotNetCore.ConsoleApp.DapperExamples
 {
     internal class DapperExample
     {
@@ -20,7 +22,7 @@ namespace MNNDotNetCore.ConsoleApp
             //Create("title", "author", "content");
             //Update(1002, "tilte 2", "author 2", "content 2");
             Delete(1002);
- }
+        }
 
         private void Read()
         {
@@ -28,7 +30,7 @@ namespace MNNDotNetCore.ConsoleApp
 
             List<BlogDto> lst = db.Query<BlogDto>("select * from tbl_blog").ToList();
 
-            foreach(BlogDto item in lst)
+            foreach (BlogDto item in lst)
             {
                 Console.WriteLine(item.BlogId);
                 Console.WriteLine(item.BlogTitle);
@@ -37,13 +39,13 @@ namespace MNNDotNetCore.ConsoleApp
                 Console.WriteLine("---------------------------------------");
 
             }
-           
+
         }
         private void Edit(int id)
         {
-           using IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
-           var item = db.Query<BlogDto>("select * from tbl_blog where blogid=@BlogId", new BlogDto { BlogId = id }).FirstOrDefault();
-            if(item is null)
+            using IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
+            var item = db.Query<BlogDto>("select * from tbl_blog where blogid=@BlogId", new BlogDto { BlogId = id }).FirstOrDefault();
+            if (item is null)
             {
                 Console.WriteLine("No data found");
                 return;
@@ -54,7 +56,7 @@ namespace MNNDotNetCore.ConsoleApp
             Console.WriteLine(item.BlogContent);
 
         }
-        private void Create(string title,string author,string content)
+        private void Create(string title, string author, string content)
         {
             var item = new BlogDto
             {
@@ -72,14 +74,14 @@ namespace MNNDotNetCore.ConsoleApp
            ,@BlogAuthor
            ,@BlogContent)";
             using IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
-           int result =  db.Execute(query, item);
+            int result = db.Execute(query, item);
 
             string message = result > 0 ? "Saving Successful." : "Saving Failed";
             Console.WriteLine(message);
         }
 
 
-        private void Update(int id,string title, string author, string content)
+        private void Update(int id, string title, string author, string content)
         {
             var item = new BlogDto
             {

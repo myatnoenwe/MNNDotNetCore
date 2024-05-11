@@ -1,5 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using MNNDotNetCore.ConsoleApp;
+using MNNDotNetCore.ConsoleApp.EFCoreExamples;
 using System.Data;
 using System.Data.SqlClient;
 

@@ -9,7 +9,7 @@ using System.ComponentModel;
 using System.Security.Cryptography.X509Certificates;
 using System.Reflection.Metadata;
 
-namespace MNNDotNetCore.ConsoleApp
+namespace MNNDotNetCore.ConsoleApp.AdoDotNetExamples
 {
     internal class AdoDotNetExample
     {
@@ -24,7 +24,7 @@ namespace MNNDotNetCore.ConsoleApp
         public void Read()
         {
 
-           SqlConnection connection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
+            SqlConnection connection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
             connection.Open();
             Console.WriteLine("Connection open.");
 
@@ -37,7 +37,7 @@ namespace MNNDotNetCore.ConsoleApp
             connection.Close();
             Console.WriteLine("Connection close.");
 
-            
+
             foreach (DataRow dr in dt.Rows)
             {
                 Console.WriteLine("Blog Id =>" + dr["BlogId"]);
@@ -47,9 +47,9 @@ namespace MNNDotNetCore.ConsoleApp
                 Console.WriteLine("__________________________________");
 
             }
-            
- }
-        public  void Edit(int id)
+
+        }
+        public void Edit(int id)
         {
             SqlConnection connection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
             connection.Open();
@@ -63,25 +63,25 @@ namespace MNNDotNetCore.ConsoleApp
             sqlDataAdapter.Fill(dt);
 
             connection.Close();
-            
-            if(dt.Rows.Count == 0)
+
+            if (dt.Rows.Count == 0)
             {
                 Console.WriteLine("No data found.");
                 return;
             }
             DataRow dr = dt.Rows[0];
 
-                Console.WriteLine("Blog Id =>" + dr["BlogId"]);
-                Console.WriteLine("Blog Title =>" + dr["BlogTitle"]);
-                Console.WriteLine("Blog Author =>" + dr["BlogAuthor"]);
-                Console.WriteLine("Blog Content =>" + dr["BlogContent"]);
-                Console.WriteLine("__________________________________");
+            Console.WriteLine("Blog Id =>" + dr["BlogId"]);
+            Console.WriteLine("Blog Title =>" + dr["BlogTitle"]);
+            Console.WriteLine("Blog Author =>" + dr["BlogAuthor"]);
+            Console.WriteLine("Blog Content =>" + dr["BlogContent"]);
+            Console.WriteLine("__________________________________");
 
-    }
+        }
 
-        public void Create(string title, string author,string content)
+        public void Create(string title, string author, string content)
         {
-            SqlConnection connection= new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
+            SqlConnection connection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
             connection.Open();
 
             string query = @"INSERT INTO [dbo].[Tbl_Blog]
@@ -92,21 +92,21 @@ namespace MNNDotNetCore.ConsoleApp
            (@BlogTitle
            ,@BlogAuthor
            ,@BlogContent)";
-            SqlCommand cmd= new SqlCommand(query, connection);
-            cmd.Parameters.AddWithValue ("@BlogTitle" , title);
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@BlogTitle", title);
             cmd.Parameters.AddWithValue("@BlogAuthor", author);
-            cmd.Parameters.AddWithValue("@BlogContent",content);
-            
-            int result= cmd.ExecuteNonQuery();
+            cmd.Parameters.AddWithValue("@BlogContent", content);
+
+            int result = cmd.ExecuteNonQuery();
 
             connection.Close();
 
-            string message = result > 0  ? "Saving Successful" : "Saving Failed";
-            Console.WriteLine (message);
+            string message = result > 0 ? "Saving Successful" : "Saving Failed";
+            Console.WriteLine(message);
 
         }
 
-        public void Update(int id,string title,string author,string content)
+        public void Update(int id, string title, string author, string content)
         {
             SqlConnection connection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
             connection.Open();
@@ -116,7 +116,7 @@ namespace MNNDotNetCore.ConsoleApp
                             ,[BlogAuthor] = @BlogAuthor
                             ,[BlogContent] =@BlogContent WHERE BlogId = @BlogId";
             SqlCommand cmd = new SqlCommand(query, connection);
-            cmd.Parameters.AddWithValue("@BlogId" , id);
+            cmd.Parameters.AddWithValue("@BlogId", id);
             cmd.Parameters.AddWithValue("@BlogTitle", title);
             cmd.Parameters.AddWithValue("@BlogAuthor", author);
             cmd.Parameters.AddWithValue("@BlogContent", content);
@@ -128,8 +128,8 @@ namespace MNNDotNetCore.ConsoleApp
             string message = result > 0 ? "Updating Successful" : "Updating Failed";
             Console.WriteLine(message);
 
- }
-       
+        }
+
         public void Delete(int id)
         {
             SqlConnection connection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);

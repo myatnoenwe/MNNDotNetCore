@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MNNDotNetCore.ConsoleApp.Dtos;
 
-namespace MNNDotNetCore.ConsoleApp
+namespace MNNDotNetCore.ConsoleApp.EFCoreExamples
 {
     internal class EFCoreExample
 
@@ -46,7 +47,7 @@ namespace MNNDotNetCore.ConsoleApp
             Console.WriteLine(item.BlogAuthor);
             Console.WriteLine(item.BlogContent);
         }
-        
+
         private void Create(string title, string author, string content)
         {
             var item = new BlogDto
