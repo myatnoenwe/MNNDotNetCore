@@ -25,6 +25,7 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\MNNDotNetCore.ConsoleApp\MNNDotNetCore.ConsoleApp.csproj" />
+	  <ProjectReference Include="..\MNNDotNetCore.Shared\MNNDotNetCore.Shared.csproj" />
 	</ItemGroup>
 
 </Project>
